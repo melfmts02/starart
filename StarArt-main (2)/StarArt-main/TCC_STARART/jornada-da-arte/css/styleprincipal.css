@@ -1,0 +1,249 @@
+/* =============== Fonte =============== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+/* =============== Tokens / Tema =============== */
+:root {
+  --bg: #0A192F;
+  --bg-2: #112B50;
+  --text: #E0E0E0;
+  --muted: #C9D1D9;
+  --accent: #D4AF37;
+  --accent-600: #b8942e;
+  --shadow: rgba(0,0,0,0.4);
+
+  --radius: 12px;
+
+  --h1: clamp(2.2rem, 2.6vw + 1.2rem, 3rem);
+  --p: clamp(1rem, 0.5vw + 0.9rem, 1.15rem);
+}
+
+body.light-theme {
+  --bg: #dbeeff;
+  --bg-2: #f3f7ff;
+  --text: #0A192F;
+  --muted: #445;
+  --accent: #D4AF37;
+  --accent-600: #b8942e;
+  --shadow: rgba(10,25,47,0.15);
+}
+
+/* =============== Base =============== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color .3s ease, color .3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; display: block; }
+
+/* Acessibilidade */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* =============== Botão de tema =============== */
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--accent);
+  color: #0A192F;
+  border: none;
+  border-radius: 999px;
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 12px var(--accent);
+  user-select: none;
+  transition: background-color .3s ease, transform .2s ease;
+}
+.theme-toggle:hover { background: var(--accent-600); transform: translateY(-2px); }
+.theme-toggle:active { transform: translateY(0); }
+
+/* =============== Tipografia =============== */
+h1, h2, h3, h4 {
+  margin: 0 0 .6rem 0;
+  font-weight: 700;
+  color: inherit;
+}
+p {
+  margin: 0 0 1rem 0;
+  font-size: var(--p);
+  line-height: 1.6;
+  max-width: 70ch;
+  color: inherit;
+}
+
+/* =============== Links & Botões =============== */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .25s ease;
+}
+a:hover { text-decoration: underline; }
+
+.btn, a.button-link {
+  background: var(--accent);
+  color: #0A192F;
+  border: none;
+  padding: .9rem 1.35rem;
+  font-size: 1rem;
+  border-radius: calc(var(--radius) - 4px);
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color .25s ease, transform .2s ease, box-shadow .25s ease;
+  box-shadow: 0 6px 16px var(--shadow);
+}
+.btn:hover, a.button-link:hover { background: var(--accent-600); transform: translateY(-2px); }
+.btn:active, a.button-link:active { transform: translateY(0); }
+
+/* =============== Header =============== */
+header {
+  position: sticky; top: 0; z-index: 1000;
+  background: var(--bg);
+  border-bottom: 1px solid var(--accent);
+  box-shadow: 0 4px 10px var(--shadow);
+  padding: 1rem 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+    display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  height: 135px; /* altura fixa do header */
+}
+
+ 
+
+
+.logo img {
+  height: 150px;   /* aumenta a altura */
+  width: auto;     /* mantém a proporção */
+  display: block;
+}
+
+
+
+/* Navegação */
+nav { display: flex; gap: 20px; }
+nav a {
+  color: var(--text);
+  padding-bottom: 3px;
+  transition: color .25s ease, border-color .25s ease;
+}
+nav a:hover,
+nav a.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+/* =============== Hero =============== */
+.hero {
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 100%);
+  text-align: center;
+  padding: 5rem 2rem;
+}
+.hero h1 { font-size: var(--h1); color: var(--accent); }
+.hero p  { color: var(--muted); margin-inline: auto; }
+
+/* =============== Cards =============== */
+.cards {
+  display: flex; flex-wrap: wrap;
+  gap: 22px;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.card-box {
+  background: var(--bg-2);
+  color: var(--text);
+  width: min(320px, 92vw);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 22px var(--shadow);
+  transition: transform .2s ease, box-shadow .3s ease, background-color .3s ease;
+}
+.card-box:hover { transform: translateY(-6px); box-shadow: 0 12px 28px var(--shadow); }
+
+.card-box .icon { font-size: 2.4rem; color: var(--accent); margin-bottom: 14px; }
+.card-box h3 { color: var(--accent); margin-bottom: 8px; font-size: 1.15rem; }
+.card-box p { color: var(--muted); font-size: .98rem; margin-bottom: 14px; }
+.card-box a { color: var(--accent); font-weight: 700; font-size: .98rem; }
+
+/* =============== Footer =============== */
+footer {
+            background-color: #b8942e;
+            color: #fff8e5;
+            padding: 30px 20px 10px;
+            text-align: center;
+        }
+        body.light-theme footer { background-color: #6a8eab; }
+
+/* =============== Intro (logo de entrada) =============== */
+.intro {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: grid; place-items: center;
+  z-index: 1100;
+  transition: opacity 1s ease;
+}
+
+.intro-inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1rem;
+  transform: translateZ(0);
+}
+
+.intro-logo {
+  width: 160px;
+  will-change: transform, opacity;
+  animation: intro-pop .8s ease both;
+}
+
+.welcome-message {
+  color: var(--accent);
+  font-size: 1.4rem;
+  opacity: .95;
+  transition: opacity 1s ease;
+}
+
+/* estado final após JS adicionar .move-logo */
+.intro.move-logo .intro-logo {
+  width: 60px;
+  position: absolute; top: 20px; left: 20px;
+  transition: width 1s ease, top 1s ease, left 1s ease;
+}
+.intro.move-logo .welcome-message { opacity: 0; }
+
+/* animação inicial da logo */
+@keyframes intro-pop {
+  0%   { transform: scale(.85); opacity: 0; }
+  60%  { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Respeita usuários com redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .intro, .intro-logo, .welcome-message, .theme-toggle,
+  .card-box, .btn, a.button-link {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =============== Responsividade =============== */
+@media (max-width: 768px) {
+  header { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  nav { gap: 12px; }
+  .hero { padding: 3.5rem 1.25rem; }
+}
